@@ -11,10 +11,10 @@ from nltk.corpus import wordnet
 # nltk.download('averaged_perceptron_tagger_eng')
         
 stopWords = { 'a', 'an', 'the', 'and', 'or', 'but', 'to', 'of', 'for', 'in', 'on', 'at', 'by', 'with', 'from', 'your', 'we', 'our', 'is', 'that', 'like', 'you', 
-             'move', 'have', 'this', 'can', 'still', 'whom', 'other', 'about', 'wish', 'make', 'will', 'eye', 'after', 'when', 'do', 'out', 'dear' }
+             'move', 'have', 'this', 'can', 'still', 'whom', 'other', 'about', 'wish', 'make', 'will', 'eye', 'after', 'when', 'do', 'out', 'dear', 'evan', 'cazares' }
 ## nltk removes stop words i like, so i use my own list
     
-def getWordBase(tag): # added this because the calculates were off and i thught lemmy alr did this
+def getWordBase(tag): # added this because the calculates were off and i thought lemmy alr did this
     return {
         'N' : wordnet.NOUN,
         'V' : wordnet.VERB,
@@ -44,9 +44,9 @@ def cosineSim(a, b):
 uniqueVocabulary = {} # for idf vecotrization, keys are the unique words, which are string, and the vlaues are an integer which represents number of occurances across all documents
 documentTF = []
 path = r"/mnt/c/Users/Schmoopy/Documents/EmailSorter/emails" #ubunto not cmd
-boostWords = {"invite": 5, "not": 5}
+
+boostWords = {"invite": 2, "not": 2, "alert" : 2, "opportunity": 2, "receive" : 1.5} # tweaking to get the differences between emails greater 
 # boostWords = {}
-# boostWords = {"not": 3}
 
 for filename in os.listdir(path): # need to calculate tf, frequency in an email, and idf, frequency across all emails
     file_path = os.path.join(path, filename)
